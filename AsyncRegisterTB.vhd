@@ -5,7 +5,6 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use IEEE.NUMERIC_STD.all;
 
 entity AsyncRegisterTB is
-	generic (n: integer := 4);
 end AsyncRegisterTB;
 
 architecture TB of AsyncRegisterTB is
@@ -27,11 +26,12 @@ architecture TB of AsyncRegisterTB is
 		);
 	end component;
 	
+	constant clock_period: time := 10 ns;
+	constant n: integer := 4;
+	
 	signal Dout_Beh, Dout_Struct: std_logic_vector(n-1 downto 0);
 	signal Din: std_logic_vector(n-1 downto 0) := (others => '0');
 	signal EN: std_logic := '0';
-	
-	constant clock_period : time := 10 ns;
 begin
 	BEH: AsyncRegisterBeh
 		generic map (n => n)

@@ -2,7 +2,6 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity ShiftRegisterTB is
-	Generic (DATA: std_logic_vector := "1011");
 end ShiftRegisterTB;
 
 architecture TB of ShiftRegisterTB is
@@ -21,14 +20,15 @@ architecture TB of ShiftRegisterTB is
 		);
 	end component;
 	
+	constant DATA: std_logic_vector := "1011";
+	constant clock_period : time := 10 ns;
+	
 	signal Sin: std_logic := '0';
 	signal SE: std_logic := '0';
 	signal CLK: std_logic := '0';
 	signal RST: std_logic := '0';
 	signal Pout_Beh: std_logic_vector(0 to DATA'Length-1);
 	signal Pout_Struct: std_logic_vector(0 to DATA'Length-1);
-	
-	constant clock_period : time := 10 ns;
 begin
 	BEH: ShiftRegisterBeh
 		generic map (n => DATA'Length)

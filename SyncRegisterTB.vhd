@@ -5,7 +5,6 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use IEEE.NUMERIC_STD.all;
 
 entity SyncRegisterTB is
-	generic (n: integer := 4);
 end SyncRegisterTB;
 
 architecture TB of SyncRegisterTB is
@@ -26,12 +25,13 @@ architecture TB of SyncRegisterTB is
 		);
 	end component;
 	
+	constant clock_period: time := 10 ns;
+	constant n: integer := 8;
+	
 	signal Dout_Beh, Dout_Struct: std_logic_vector(n-1 downto 0);
 	signal Din: std_logic_vector(n-1 downto 0) := (others => '0');
 	signal CE: std_logic := '0';
 	signal C: std_logic := '0';
-	
-	constant clock_period : time := 10 ns;
 begin
 	BEH: SyncRegisterBeh
 		generic map (n => n)
